@@ -1,13 +1,30 @@
 package pl.kodolamacz.spring.dao.model;
 
-public class Room extends Entity{
+import java.util.List;
 
-  private int number;
-  private int capacity;
+public class Room extends Entity {
 
-  public Room(Long id, int number, int capacity) {
-    super(id);
-    this.number = number;
-    this.capacity = capacity;
-  }
+    private int number;
+    private int capacity;
+
+    public Room(int number, int capacity) {
+        this.number = number;
+        this.capacity = capacity;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }
