@@ -36,7 +36,7 @@ public class Application {
         Room room = new Room(1, 50);
         roomDao.save(room);
 
-        Show show = new Show(Calendar.getInstance().getTime(),movie, room);
+        Show show = new Show(Calendar.getInstance().getTime(), movie, room);
         showDao.save(show);
 
         Reservation reservation = new Reservation(user, show);

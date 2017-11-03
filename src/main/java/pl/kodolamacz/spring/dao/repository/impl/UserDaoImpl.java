@@ -19,8 +19,4 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
                 .orElse(null);
     }
 
-    @Override
-    public void save(User entity) {
-
-    }
 }
