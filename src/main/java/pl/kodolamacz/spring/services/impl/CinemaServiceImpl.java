@@ -2,13 +2,14 @@ package pl.kodolamacz.spring.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
 import pl.kodolamacz.spring.services.CinemaSerice;
 
 import java.util.Date;
 
-@Component
+@Repository
 public class CinemaServiceImpl implements CinemaSerice{
 
   @Autowired
