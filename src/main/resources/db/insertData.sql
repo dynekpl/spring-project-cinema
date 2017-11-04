@@ -1,0 +1,14 @@
+INSERT INTO users VALUES (NULL, 'arek@cacko.pl', 'myPassword');
+INSERT INTO users VALUES (NULL, 'person@person.pl', 'pass2');
+
+INSERT INTO movies VALUES (NULL, 'Titanic', 2500);
+INSERT INTO movies VALUES (NULL, 'Matrix', 2000);
+
+INSERT INTO rooms VALUES (NULL, 1, 250);
+INSERT INTO rooms VALUES (NULL, 2, 200);
+
+INSERT INTO shows VALUES (NULL, TIMESTAMP '2017-11-04 20:00:00', 1, 1);
+INSERT INTO shows VALUES (NULL, TIMESTAMP '2017-11-04 21:00:00', 2, 2);
+
+INSERT INTO reservations VALUES (NULL, 'WAITING', 1, 1);
+INSERT INTO reservations VALUES (NULL, 'WAITING', 2, 2);
