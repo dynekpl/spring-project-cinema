@@ -2,10 +2,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <context:component-scan base-package="pl.kodolamacz.spring" />
+    <context:component-scan base-package="pl.kodolamacz.spring"/>
 
+    <!--uruchomienie aspektów:-->
+    <aop:aspectj-autoproxy/>
+    <!--
+        <aop:aspectj-autoproxy/>
+        <bean id="aspect" class="pl.kodolamacz.spring.ascpects.DatabaseAspect" />
+        <aop:config>
+            <aop:aspect id="beforeSave" ref="aspect" >
+                <aop:pointcut id="databasePointCut" expression="execution(* pl.kodolamacz.spring.dao.repository.AbstractDao.save(..))" />
+                <aop:before method="before" pointcut-ref="databasePointCut" />
+                <aop:after method="after" pointcut-ref="databasePointCut" />
+            </aop:aspect>
+        </aop:config>
+    -->
 
 </beans>
