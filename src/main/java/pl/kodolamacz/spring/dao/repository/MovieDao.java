@@ -8,4 +8,6 @@ import pl.kodolamacz.spring.dao.model.Movie;
 public interface MovieDao extends JpaRepository<Movie, Long> {
 
     Movie findByTitle(String title);
+
+    Movie findByPrice(int price);
 }

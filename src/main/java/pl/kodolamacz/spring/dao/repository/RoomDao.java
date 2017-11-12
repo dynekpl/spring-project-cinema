@@ -9,4 +9,6 @@ public interface RoomDao extends JpaRepository<Room, Long> {
 
     Room findByCapacity(int number);
 
+    Room findByNumber(int number);
+
 }

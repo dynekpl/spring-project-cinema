@@ -3,6 +3,7 @@ package pl.kodolamacz.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
 
@@ -10,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Component
+@Transactional
 public class Application {
 
   @Value("${app.name:defaultAppName}") // #{} - SpEL, ${} - propertisy
