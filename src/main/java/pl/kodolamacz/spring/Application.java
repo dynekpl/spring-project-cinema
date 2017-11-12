@@ -69,7 +69,7 @@ public class Application {
     //System.out.println(reservation);
 
     System.out.println("Spring data room test: " + roomDao.findByCapacity(250));
-
+    System.out.println("Spring data custom method: " + userDao.findByPass("myPassword"));
 
   }
 }

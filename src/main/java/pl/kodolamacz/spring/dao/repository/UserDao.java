@@ -7,7 +7,7 @@ import pl.kodolamacz.spring.dao.model.User;
 import java.util.List;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserDao extends JpaRepository<User, Long>, UserDaoCustom {
 
     User findByEmail(String email);
 
