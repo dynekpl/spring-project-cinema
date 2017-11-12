@@ -14,8 +14,8 @@
                                   ignore-unresolvable="true"/>
 
     <!--uruchomienie aspektów:-->
-    <aop:aspectj-autoproxy/>
     <!--
+    <aop:aspectj-autoproxy/>
         <aop:aspectj-autoproxy/>
         <bean id="aspect" class="pl.kodolamacz.spring.ascpects.DatabaseAspect" />
         <aop:config>

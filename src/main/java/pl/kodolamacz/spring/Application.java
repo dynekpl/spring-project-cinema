@@ -43,25 +43,31 @@ public class Application {
 
     public void simulate() {
 
-        User user = new User("dyneck@abc.pl", "pass");
-        userDao.save(user);
+        User user = userDao.findUser("arek@cacko.pl");
+        System.out.println("Odczytano z bazy: " + user);
 
-        Movie movie = new Movie("Botoks", 2000);
-        movieDao.save(movie);
+        System.out.println("Odczytano z bazy wszystkie: " + userDao.findAll());
+
+        User arek = new User("cacko@arek.pl", "pass");
+        userDao.save(arek);
+
+        Movie titanic = new Movie("Titanic", 2000);
+        movieDao.save(titanic);
 
         Room room = new Room(1, 50);
         roomDao.save(room);
 
-        Show show = new Show(Calendar.getInstance().getTime(), movie, room);
+        Show show = new Show(Calendar.getInstance().getTime(),titanic, room);
         showDao.save(show);
 
-        Reservation reservation = new Reservation(user, show);
+        Reservation reservation = new Reservation(arek, show);
         reservationDao.save(reservation);
 
         // ---------------------
 
         Reservation reservationDaoById = reservationDao.findById(reservation.getId());
         System.out.println(reservation);
+
 
     }
 }
