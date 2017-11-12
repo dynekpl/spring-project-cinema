@@ -12,9 +12,12 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>4.3.12.RELEASE</spring.version>
+        <aspectj.version>1.8.12</aspectj.version>
     </properties>
 
     <dependencies>
+
+        <!--Podstawowe zależności dla DI-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -33,7 +36,27 @@
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <!--TESTOWANIE-->
+
+        <!--Aspekty-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+
+        <!--Testy-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -54,8 +77,6 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
 </project>
