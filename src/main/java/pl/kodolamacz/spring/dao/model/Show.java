@@ -2,7 +2,7 @@ package pl.kodolamacz.spring.dao.model;
 
 import java.util.Date;
 
-public class Show extends Entity {
+public class Show extends AbstractEntity {
 
     private Date date;
 

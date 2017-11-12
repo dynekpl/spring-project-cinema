@@ -13,6 +13,9 @@
                                   file-encoding="UTF-8"
                                   ignore-unresolvable="true"/>
 
+    <!--uruchomienie mechanizmu transakcji-->
+    <!--<tx:annotation-driven />-->
+
     <!--uruchomienie aspektów:-->
     <!--
     <aop:aspectj-autoproxy/>

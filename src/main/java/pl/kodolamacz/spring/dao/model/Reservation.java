@@ -2,7 +2,7 @@ package pl.kodolamacz.spring.dao.model;
 
 import pl.kodolamacz.spring.dao.model.helpers.Status;
 
-public class Reservation extends Entity {
+public class Reservation extends AbstractEntity {
 
     private Status status = Status.WAITING;
 

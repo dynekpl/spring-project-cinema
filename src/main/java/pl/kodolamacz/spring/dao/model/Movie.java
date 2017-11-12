@@ -1,6 +1,6 @@
 package pl.kodolamacz.spring.dao.model;
 
-public class Movie extends Entity {
+public class Movie extends AbstractEntity {
 
     private String title;
     private String category;

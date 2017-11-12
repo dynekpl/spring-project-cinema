@@ -1,43 +1,52 @@
 package pl.kodolamacz.spring.dao.model;
 
-public class User extends Entity {
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    private String email;
-    private String password;
+@Entity
+@Table(name = "users")
+public class User extends AbstractEntity {
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+  private String email;
+  private String password;
 
-    public User(Long id, String email, String password) {
-        super(id);
-        this.email = email;
-        this.password = password;
-    }
+  // for hibernate:
+  public User() {
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public User(String email, String password) {
+    this.email = email;
+    this.password = password;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public User(Long id, String email, String password) {
+    super(id);
+    this.email = email;
+    this.password = password;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id = " + getId() +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+            "id = " + getId() +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            '}';
+  }
 }
