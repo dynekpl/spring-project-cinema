@@ -26,7 +26,10 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
   public User findUser(String email) {
     return getCurrentSession().createQuery("select u from User u where u.email = :email", User.class)
             .setParameter("email", email)
-            .getSingleResult();
+            .getResultList()
+            .stream()
+            .findFirst()
+            .orElse(null);
   }
 
   @Override
