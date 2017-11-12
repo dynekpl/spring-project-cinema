@@ -1,7 +1,6 @@
 package pl.kodolamacz.spring.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
@@ -36,7 +35,7 @@ public class CinemaServiceImpl implements CinemaSerice{
   @Override
   public boolean checkUser(String email, String password) {
     //TODO try-catch
-    User user = userDao.findUser(email);
+    User user = userDao.findByEmail(email);
     return user.getPassword().equals(password) ? true : false;
   }
 
@@ -44,7 +43,7 @@ public class CinemaServiceImpl implements CinemaSerice{
   public void createShow(Date date, String movieTitle, int roomNumber) {
     //TODO try-catch
     Movie movie = movieDao.findByTitle(movieTitle);
-    Room room = roomDao.findByRoomNumber(roomNumber);
+    Room room = roomDao.findByCapacity(roomNumber);
 
     Show show = new Show(date, movie, room);
     showDao.save(show);

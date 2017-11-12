@@ -1,11 +1,18 @@
 package pl.kodolamacz.spring.dao.model;
 
-public class Movie extends Entity {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "movies")
+public class Movie extends AbstractEntity {
 
     private String title;
     private String category;
     private String year;
     private int price; // in grosze
+
+    public Movie(){}
 
     public Movie(String title, String category, String year, int price) {
         this.title = title;

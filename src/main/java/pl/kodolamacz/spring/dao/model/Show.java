@@ -1,41 +1,52 @@
 package pl.kodolamacz.spring.dao.model;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Date;
 
-public class Show extends Entity {
+@Entity
+@Table(name = "shows")
+public class Show extends AbstractEntity {
 
-    private Date date;
+  private Date date;
 
-    private Movie movie;
-    private Room room;
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "movie_id")
+  private Movie movie;
 
-    public Show(Date date, Movie movie, Room room) {
-        this.date = date;
-        this.movie = movie;
-        this.room = room;
-    }
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "room_id")
+  private Room room;
 
-    public Date getDate() {
-        return date;
-    }
+  public Show() {}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public Show(Date date, Movie movie, Room room) {
+    this.date = date;
+    this.movie = movie;
+    this.room = room;
+  }
 
-    public Movie getMovie() {
-        return movie;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    public Room getRoom() {
-        return room;
-    }
+  public Movie getMovie() {
+    return movie;
+  }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+  public void setMovie(Movie movie) {
+    this.movie = movie;
+  }
+
+  public Room getRoom() {
+    return room;
+  }
+
+  public void setRoom(Room room) {
+    this.room = room;
+  }
 }

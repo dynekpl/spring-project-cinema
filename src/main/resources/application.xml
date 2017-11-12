@@ -13,9 +13,12 @@
                                   file-encoding="UTF-8"
                                   ignore-unresolvable="true"/>
 
+    <!--uruchomienie mechanizmu transakcji-->
+    <!--<tx:annotation-driven />-->
+
     <!--uruchomienie aspektów:-->
-    <aop:aspectj-autoproxy/>
     <!--
+    <aop:aspectj-autoproxy/>
         <aop:aspectj-autoproxy/>
         <bean id="aspect" class="pl.kodolamacz.spring.ascpects.DatabaseAspect" />
         <aop:config>

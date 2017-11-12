@@ -1,36 +1,61 @@
 package pl.kodolamacz.spring.dao.model;
 
-public class User extends Entity {
+import javax.persistence.*;
+import javax.persistence.Entity;
+import java.util.Set;
 
-    private String email;
-    private String password;
+@Entity
+@Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "User.byMail",
+                query = "select a from User a where a.email = :email"
+        )
+})
+public class User extends AbstractEntity {
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+  private String email;
+  private String password;
 
-    public String getEmail() {
-        return email;
-    }
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private Set<Reservation> reservations;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  // for hibernate:
+  public User() {
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public User(String email, String password) {
+    this.email = email;
+    this.password = password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public User(Long id, String email, String password) {
+    super(id);
+    this.email = email;
+    this.password = password;
+  }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+            "id = " + getId() +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            '}';
+  }
 }

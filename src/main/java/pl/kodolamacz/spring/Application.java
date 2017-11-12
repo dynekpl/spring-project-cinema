@@ -12,56 +12,64 @@ import java.util.Date;
 @Component
 public class Application {
 
-    @Value("${app.name:defaultAppName}") // #{} - SpEL, ${} - propertisy
-    String appName;
+  @Value("${app.name:defaultAppName}") // #{} - SpEL, ${} - propertisy
+          String appName;
 
-    @Value("${app.version}")
-    int version;
+  @Value("${app.version}")
+  int version;
 
-    //wywołanie metody/konstruktora na obiekcie
-    @Value("#{new java.util.Date()}")
-    private Date date;
+  //wywołanie metody/konstruktora na obiekcie
+  @Value("#{new java.util.Date()}")
+  private Date date;
 
-    //wywołanie metody na beanie
-    @Value("#{idSequenceGenerator.version}")
-    private int generatorVersion;
+  //wywołanie metody na beanie
+  @Value("#{idSequenceGenerator.version}")
+  private int generatorVersion;
 
-    @Autowired
-    private UserDao userDao;
+  @Autowired
+  private UserDao userDao;
 
-    @Autowired
-    private MovieDao movieDao;
+  @Autowired
+  private MovieDao movieDao;
 
-    @Autowired
-    private ShowDao showDao;
+  @Autowired
+  private ShowDao showDao;
 
-    @Autowired
-    private RoomDao roomDao;
+  @Autowired
+  private RoomDao roomDao;
 
-    @Autowired
-    private ReservationDao reservationDao;
+  @Autowired
+  private ReservationDao reservationDao;
 
-    public void simulate() {
+  public void simulate() {
 
-        User user = new User("dyneck@abc.pl", "pass");
-        userDao.save(user);
+    User user = userDao.findByEmail("arek@cacko.pl");
+    System.out.println("Odczytano z bazy: " + user);
 
-        Movie movie = new Movie("Botoks", 2000);
-        movieDao.save(movie);
+    System.out.println("Odczytano z bazy wszystkie: " + userDao.findAll());
 
-        Room room = new Room(1, 50);
-        roomDao.save(room);
+    User arek = new User("cacko@arek.pl", "pass");
+    //userDao.save(arek);
 
-        Show show = new Show(Calendar.getInstance().getTime(), movie, room);
-        showDao.save(show);
+    Movie titanic = new Movie("Titanic", 2000);
+    //movieDao.save(titanic);
 
-        Reservation reservation = new Reservation(user, show);
-        reservationDao.save(reservation);
+    Room room = new Room(1, 50);
+    //roomDao.save(room);
 
-        // ---------------------
+    Show show = new Show(Calendar.getInstance().getTime(), titanic, room);
+    //showDao.save(show);
 
-        Reservation reservationDaoById = reservationDao.findById(reservation.getId());
-        System.out.println(reservation);
+    Reservation reservation = new Reservation(arek, show);
+    //reservationDao.save(reservation);
 
-    }
+    // ---------------------
+
+    //Reservation reservationDaoById = reservationDao.findOne(reservation.getId());
+    //System.out.println(reservation);
+
+    System.out.println("Spring data room test: " + roomDao.findByCapacity(250));
+
+
+  }
 }

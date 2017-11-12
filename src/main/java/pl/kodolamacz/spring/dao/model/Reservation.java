@@ -2,48 +2,61 @@ package pl.kodolamacz.spring.dao.model;
 
 import pl.kodolamacz.spring.dao.model.helpers.Status;
 
-public class Reservation extends Entity {
+import javax.persistence.*;
+import javax.persistence.Entity;
 
-    private Status status = Status.WAITING;
+@Entity
+@Table(name = "reservations")
+public class Reservation extends AbstractEntity {
 
-    private User user;
-    private Show show;
+  @Enumerated(EnumType.STRING)
+  private Status status = Status.WAITING;
 
-    public Reservation(User user, Show show) {
-        this.user = user;
-        this.show = show;
-    }
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    public User getUser() {
-        return user;
-    }
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "show_id")
+  private Show show;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public Reservation(){}
 
-    public Show getShow() {
-        return show;
-    }
+  public Reservation(User user, Show show) {
+    this.user = user;
+    this.show = show;
+  }
 
-    public void setShow(Show show) {
-        this.show = show;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public Status getStatus() {
-        return status;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+  public Show getShow() {
+    return show;
+  }
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "status=" + status +
-                ", user=" + user +
-                ", show=" + show +
-                '}';
-    }
+  public void setShow(Show show) {
+    this.show = show;
+  }
+
+  public Status getStatus() {
+    return status;
+  }
+
+  public void setStatus(Status status) {
+    this.status = status;
+  }
+
+  @Override
+  public String toString() {
+    return "Reservation{" +
+            "status=" + status +
+            ", user=" + user +
+            ", show=" + show +
+            '}';
+  }
 }

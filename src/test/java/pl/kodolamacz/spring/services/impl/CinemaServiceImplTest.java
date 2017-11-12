@@ -3,7 +3,6 @@ package pl.kodolamacz.spring.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
@@ -48,7 +47,7 @@ public class CinemaServiceImplTest extends AbstractTestNGSpringContextTests {
     cinemaService.createUser(email, password);
 
     //then
-    User foundUser = userDao.findUser(email);
+    User foundUser = userDao.findByEmail(email);
     assertEquals(foundUser.getEmail(), email);
   }
 
