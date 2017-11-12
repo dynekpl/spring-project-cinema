@@ -8,6 +8,8 @@ import pl.kodolamacz.spring.dao.model.AbstractEntity;
 import pl.kodolamacz.spring.dao.repository.AbstractDao;
 import pl.kodolamacz.spring.dao.tools.Generator;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +17,8 @@ import java.util.Map;
 
 public abstract class AbstractDaoImpl<T extends AbstractEntity> implements AbstractDao<T> {
 
-//    @Autowired
-//    protected NamedParameterJdbcTemplate jdbcTemplate;
-
-  @Autowired
-  protected SessionFactory sessionFactory;
+  @PersistenceContext
+  protected EntityManager entityManager;
 
   protected Class<T> clazz;
 
@@ -45,12 +44,9 @@ public abstract class AbstractDaoImpl<T extends AbstractEntity> implements Abstr
     entityMap.put(entity.getId(), entity);
   }
 
-  public Session getCurrentSession() {
-    return sessionFactory.getCurrentSession();
-  }
-
   public List<T> findAll() {
-    // zapytanie o wiele
-    return getCurrentSession().createQuery("from " + clazz, clazz).getResultList();
+    return entityManager
+            .createQuery("from " + clazz.getName(), clazz)
+            .getResultList();
   }
 }

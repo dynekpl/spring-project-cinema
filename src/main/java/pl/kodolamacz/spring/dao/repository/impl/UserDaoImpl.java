@@ -15,26 +15,17 @@ import java.util.Map;
 @Transactional
 public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
-  private static final String FIND_BY_EMAIL = "select * from users where email = :email"; // :email - łyka NamedParameterJdbcTemplate
-  private static final String FIND_ALL = "select * from users";
-
   public UserDaoImpl() {
     setClazz(User.class);
   }
 
   @Override
   public User findUser(String email) {
-    return getCurrentSession().createQuery("select u from User u where u.email = :email", User.class)
+    return entityManager.createNamedQuery("User.byMail", clazz)
             .setParameter("email", email)
             .getResultList()
             .stream()
             .findFirst()
             .orElse(null);
   }
-
-  @Override
-  public List<User> findAll() {
-    return getCurrentSession().createQuery("select u from User u", User.class).getResultList();
-  }
-
 }
