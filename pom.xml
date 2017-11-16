@@ -164,6 +164,17 @@
                     </webResources>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.7.v20170914</version>
+                <configuration>
+                    <!--<jettyXml>jetty-http.xml</jettyXml>-->
+                    <httpConnector>
+                        <port>8077</port>
+                    </httpConnector>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
