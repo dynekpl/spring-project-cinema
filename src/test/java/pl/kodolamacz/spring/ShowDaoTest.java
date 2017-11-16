@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import pl.kodolamacz.spring.dao.model.Movie;
 import pl.kodolamacz.spring.dao.model.Room;
 import pl.kodolamacz.spring.dao.model.Show;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application.xml")
+@Transactional
 public class ShowDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
