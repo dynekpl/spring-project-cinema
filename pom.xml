@@ -88,6 +88,12 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.44</version>
+        </dependency>
 
         <!--MVC-->
         <dependency>
@@ -171,7 +177,7 @@
                 <configuration>
                     <!--<jettyXml>jetty-http.xml</jettyXml>-->
                     <httpConnector>
-                        <port>8077</port>
+                        <port>8088</port>
                     </httpConnector>
                 </configuration>
             </plugin>

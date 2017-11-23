@@ -26,36 +26,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
-@EnableTransactionManagement // odpowiednik <tx:annotation-driven /> w XML
-@EnableJpaRepositories(basePackages = "pl.kodolamacz.spring.dao")
-public class PersistanceConfig {
-
-  @Autowired
-  private Environment env;
+public class PersistanceBaseConfig {
 
   @Bean
   public PropertiesFactoryBean jpaProperties() {
-    PropertiesFactoryBean factoryBean = new PropertiesFactoryBean();
+    PropertiesFactoryBean factoryBean =  new PropertiesFactoryBean();
     factoryBean.setLocation(new ClassPathResource("db/jpa.properties"));
     return factoryBean;
   }
 
-  private Properties getHibernateProperties() {
-    return new Properties() {
-      {
-        setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//                setProperty("hibernate.globally_quoted_identifiers", "true");   <--- not working with it
-        setProperty("hibernate.default_schema", "PUBLIC");
-        setProperty("show_sql", "true");
-//                setProperty("hibernate.jdbc.use_streams_for_binary", "true");
-//                setProperty("hibernate.jdbc.batch_size", "1000");
-      }
-    };
-  }
-
   @Bean
+  @Autowired
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setPackagesToScan("pl.kodolamacz.spring.dao");
@@ -73,17 +54,5 @@ public class PersistanceConfig {
   @Bean
   public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
     return new PersistenceExceptionTranslationPostProcessor();
-  }
-
-  @Bean
-  public DataSource getHSQLDataSource() {
-    EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-    EmbeddedDatabase db = builder
-            .setType(EmbeddedDatabaseType.HSQL)
-            .addScript("db/schema.sql")
-            .addScript("db/insertData.sql")
-            .build();
-    System.out.println("DB builder...");
-    return db;
   }
 }
