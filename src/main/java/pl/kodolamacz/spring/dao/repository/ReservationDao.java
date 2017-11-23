@@ -15,4 +15,6 @@ public interface ReservationDao extends JpaRepository<Reservation, Long> {
 
     List<Reservation> findByShow(Show show);
 
+    List<Reservation> findByUserId(Long id);
+
 }

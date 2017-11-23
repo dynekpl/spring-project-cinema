@@ -171,7 +171,7 @@
                 <configuration>
                     <!--<jettyXml>jetty-http.xml</jettyXml>-->
                     <httpConnector>
-                        <port>8077</port>
+                        <port>8078</port>
                     </httpConnector>
                 </configuration>
             </plugin>

@@ -8,18 +8,9 @@ import javax.persistence.Table;
 public class Movie extends AbstractEntity {
 
     private String title;
-    private String category;
-    private String year;
     private int price; // in grosze
 
     public Movie(){}
-
-    public Movie(String title, String category, String year, int price) {
-        this.title = title;
-        this.category = category;
-        this.year = year;
-        this.price = price;
-    }
 
     public Movie(String title, int price) {
         this.title = title;
@@ -32,22 +23,6 @@ public class Movie extends AbstractEntity {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
     }
 
     public int getPrice() {

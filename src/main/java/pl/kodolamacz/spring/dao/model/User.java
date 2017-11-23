@@ -58,4 +58,8 @@ public class User extends AbstractEntity {
             ", password='" + password + '\'' +
             '}';
   }
+
+  public Set<Reservation> getReservations() {
+    return reservations;
+  }
 }

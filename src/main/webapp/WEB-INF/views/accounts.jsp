@@ -17,6 +17,7 @@
             <td>${user.id}</td>
             <td>${user.email}</td>
             <td>${user.password}</td>
+            <td><a href="<c:url value="/reservations/byUser?userId=${user.id}"/>">${user.reservations.size()}</a></td>
         </tr>
     </c:forEach>
 
