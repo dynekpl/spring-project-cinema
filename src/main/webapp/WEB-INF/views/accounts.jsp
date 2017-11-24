@@ -22,6 +22,6 @@
     </c:forEach>
 
 </table>
-
+<a href="<c:url value = "/accounts/add"/>">Dodaj użytkownika</a>
 </body>
 </html>

@@ -1,10 +1,21 @@
 package pl.kodolamacz.mvc.controllers.forms;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class AddUserForm {
 
+  @Email
   private String email;
 
+  @NotBlank
+  @Size(min=8)
   private String password;
+
+  public AddUserForm() {
+  }
 
   public String getEmail() {
     return email;

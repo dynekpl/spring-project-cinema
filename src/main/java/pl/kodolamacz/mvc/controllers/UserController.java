@@ -3,10 +3,14 @@ package pl.kodolamacz.mvc.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kodolamacz.mvc.controllers.forms.AddUserForm;
 import pl.kodolamacz.spring.dao.model.User;
 import pl.kodolamacz.spring.dao.repository.UserDao;
+
+import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -33,7 +37,10 @@ public class UserController {
   }
 
   @RequestMapping(value = "/save", method = POST)
-  public String saveNewUser(AddUserForm userForm) {
+  public String saveNewUser(@Valid @ModelAttribute("userForm") AddUserForm userForm, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return "addNewUser";
+    }
     userDao.save(new User(userForm.getEmail(), userForm.getPassword()));
     return "redirect:/" + BASE_URL;
   }
